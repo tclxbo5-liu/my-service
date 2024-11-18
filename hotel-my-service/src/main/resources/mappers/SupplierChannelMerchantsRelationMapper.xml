@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.elong.hotel.hotelmy.mybatis.SupplierChannelMerchantsRelationMapper">
+  <resultMap id="BaseResultMap" type="com.elong.hotel.hotelmy.entity.SupplierChannelMerchantsRelation">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="supplier_id" jdbcType="INTEGER" property="supplierId" />
+    <result column="supplier_name" jdbcType="VARCHAR" property="supplierName" />
+    <result column="channel_merchants_id" jdbcType="INTEGER" property="channelMerchantsId" />
+    <result column="channel_merchants_name" jdbcType="VARCHAR" property="channelMerchantsName" />
+    <result column="commission_type" jdbcType="INTEGER" property="commissionType" />
+    <result column="commission_value" jdbcType="DECIMAL" property="commissionValue" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="audit_type" jdbcType="INTEGER" property="auditType" />
+    <result column="audit_opinion" jdbcType="VARCHAR" property="auditOpinion" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="creator" jdbcType="VARCHAR" property="creator" />
+    <result column="operator" jdbcType="VARCHAR" property="operator" />
+    <result column="op_ip" jdbcType="VARCHAR" property="opIp" />
+    <result column="_timestamp" jdbcType="TIMESTAMP" property="timestamp" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, supplier_id, supplier_name, channel_merchants_id, channel_merchants_name, commission_type, 
+    commission_value, status, audit_type, audit_opinion, create_time, creator, operator, 
+    op_ip, _timestamp
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from supplier_channel_merchants_relation
+    where id
+    <foreach collection="idList" index="index" item="item" open="in (" separator="," close=")">
+      #{item}
+    </foreach>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from supplier_channel_merchants_relation
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.elong.hotel.hotelmy.entity.SupplierChannelMerchantsRelation">
+    insert into supplier_channel_merchants_relation (id, supplier_id, supplier_name, 
+      channel_merchants_id, channel_merchants_name, 
+      commission_type, commission_value, status, 
+      audit_type, audit_opinion, create_time, 
+      creator, operator, op_ip, 
+      _timestamp)
+    values (#{id,jdbcType=BIGINT}, #{supplierId,jdbcType=INTEGER}, #{supplierName,jdbcType=VARCHAR}, 
+      #{channelMerchantsId,jdbcType=INTEGER}, #{channelMerchantsName,jdbcType=VARCHAR}, 
+      #{commissionType,jdbcType=INTEGER}, #{commissionValue,jdbcType=DECIMAL}, #{status,jdbcType=INTEGER}, 
+      #{auditType,jdbcType=INTEGER}, #{auditOpinion,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{creator,jdbcType=VARCHAR}, #{operator,jdbcType=VARCHAR}, #{opIp,jdbcType=VARCHAR}, 
+      #{timestamp,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.elong.hotel.hotelmy.entity.SupplierChannelMerchantsRelation">
+    insert into supplier_channel_merchants_relation
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="supplierId != null">
+        supplier_id,
+      </if>
+      <if test="supplierName != null">
+        supplier_name,
+      </if>
+      <if test="channelMerchantsId != null">
+        channel_merchants_id,
+      </if>
+      <if test="channelMerchantsName != null">
+        channel_merchants_name,
+      </if>
+      <if test="commissionType != null">
+        commission_type,
+      </if>
+      <if test="commissionValue != null">
+        commission_value,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="auditType != null">
+        audit_type,
+      </if>
+      <if test="auditOpinion != null">
+        audit_opinion,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="creator != null">
+        creator,
+      </if>
+      <if test="operator != null">
+        operator,
+      </if>
+      <if test="opIp != null">
+        op_ip,
+      </if>
+      <if test="timestamp != null">
+        _timestamp,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="supplierId != null">
+        #{supplierId,jdbcType=INTEGER},
+      </if>
+      <if test="supplierName != null">
+        #{supplierName,jdbcType=VARCHAR},
+      </if>
+      <if test="channelMerchantsId != null">
+        #{channelMerchantsId,jdbcType=INTEGER},
+      </if>
+      <if test="channelMerchantsName != null">
+        #{channelMerchantsName,jdbcType=VARCHAR},
+      </if>
+      <if test="commissionType != null">
+        #{commissionType,jdbcType=INTEGER},
+      </if>
+      <if test="commissionValue != null">
+        #{commissionValue,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="auditType != null">
+        #{auditType,jdbcType=INTEGER},
+      </if>
+      <if test="auditOpinion != null">
+        #{auditOpinion,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creator != null">
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="operator != null">
+        #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="opIp != null">
+        #{opIp,jdbcType=VARCHAR},
+      </if>
+      <if test="timestamp != null">
+        #{timestamp,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.elong.hotel.hotelmy.entity.SupplierChannelMerchantsRelation">
+    update supplier_channel_merchants_relation
+    <set>
+      <if test="supplierId != null">
+        supplier_id = #{supplierId,jdbcType=INTEGER},
+      </if>
+      <if test="supplierName != null">
+        supplier_name = #{supplierName,jdbcType=VARCHAR},
+      </if>
+      <if test="channelMerchantsId != null">
+        channel_merchants_id = #{channelMerchantsId,jdbcType=INTEGER},
+      </if>
+      <if test="channelMerchantsName != null">
+        channel_merchants_name = #{channelMerchantsName,jdbcType=VARCHAR},
+      </if>
+      <if test="commissionType != null">
+        commission_type = #{commissionType,jdbcType=INTEGER},
+      </if>
+      <if test="commissionValue != null">
+        commission_value = #{commissionValue,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="auditType != null">
+        audit_type = #{auditType,jdbcType=INTEGER},
+      </if>
+      <if test="auditOpinion != null">
+        audit_opinion = #{auditOpinion,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creator != null">
+        creator = #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="operator != null">
+        operator = #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="opIp != null">
+        op_ip = #{opIp,jdbcType=VARCHAR},
+      </if>
+      <if test="timestamp != null">
+        _timestamp = #{timestamp,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.elong.hotel.hotelmy.entity.SupplierChannelMerchantsRelation">
+    update supplier_channel_merchants_relation
+    set supplier_id = #{supplierId,jdbcType=INTEGER},
+      supplier_name = #{supplierName,jdbcType=VARCHAR},
+      channel_merchants_id = #{channelMerchantsId,jdbcType=INTEGER},
+      channel_merchants_name = #{channelMerchantsName,jdbcType=VARCHAR},
+      commission_type = #{commissionType,jdbcType=INTEGER},
+      commission_value = #{commissionValue,jdbcType=DECIMAL},
+      status = #{status,jdbcType=INTEGER},
+      audit_type = #{auditType,jdbcType=INTEGER},
+      audit_opinion = #{auditOpinion,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      creator = #{creator,jdbcType=VARCHAR},
+      operator = #{operator,jdbcType=VARCHAR},
+      op_ip = #{opIp,jdbcType=VARCHAR},
+      _timestamp = #{timestamp,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,6 @@
+2024-11-15 17:15:53 [http-nio-8080-exec-4] INFO  c.e.hotel.hotelmy.bll.SupplierBLL - helloworld
+2024-11-15 17:15:53 [http-nio-8080-exec-4] DEBUG c.e.h.h.m.S.selectByPrimaryKey - ==>  Preparing: select id, supplier_id, supplier_name, channel_merchants_id, channel_merchants_name, commission_type, commission_value, status, audit_type, audit_opinion, create_time, creator, operator, op_ip, _timestamp from supplier_channel_merchants_relation where id in ( ? , ? )
+2024-11-15 17:15:53 [http-nio-8080-exec-4] DEBUG c.e.h.h.m.S.selectByPrimaryKey - ==> Parameters: 3(Long), 4(Long)
+2024-11-15 17:15:53 [http-nio-8080-exec-4] DEBUG c.e.h.h.m.S.selectByPrimaryKey - <==      Total: 2
+2024-11-15 17:44:57 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2024-11-15 17:44:57 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
