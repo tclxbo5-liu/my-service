@@ -1,16 +1,13 @@
 package com.elong.hotel.hotelmy.bll;
 
-import com.alibaba.fastjson.JSON;
+import com.elong.hotel.hotelmy.aop.aspect.LogInvoke;
 import com.elong.hotel.hotelmy.entity.SupplierChannelMerchantsRelation;
-import com.elong.hotel.hotelmy.mybatis.SupplierChannelMerchantsRelationMapper;
 import com.elong.hotel.hotelmy.service.MyService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.util.List;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -24,10 +21,11 @@ public class SupplierBLL {
     @Autowired
     MyService myService;
 
+    @LogInvoke(isController = false)
     public List<SupplierChannelMerchantsRelation> getSupplierChannelList(List<Long> idList){
-        LOGGER.info("helloworld");
+        LOGGER.info("start getSupplierChannelList");
         List<SupplierChannelMerchantsRelation> relations = myService.getRelation(idList);
-        System.out.println(JSON.toJSONString(relations));
+        LOGGER.info("end getSupplierChannelList");
         return relations;
     }
 

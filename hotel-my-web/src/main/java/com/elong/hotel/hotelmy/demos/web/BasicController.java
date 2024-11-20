@@ -30,7 +30,7 @@ import java.util.*;
 /**
  * @author <a href="mailto:chenxilzx1@gmail.com">theonefx</a>
  */
-@RestController
+@Controller
 public class BasicController {
 
     @Autowired
