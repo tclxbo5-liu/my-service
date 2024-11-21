@@ -17,10 +17,12 @@
 package com.elong.hotel.hotelmy.demos.web;
 
 import com.elong.hotel.hotelmy.bll.SupplierBLL;
+import com.elong.hotel.hotelmy.common.model.redis.CommonRedisTemplate;
 import com.elong.hotel.hotelmy.common.model.redis.RedisTemplateService;
 import com.elong.hotel.hotelmy.entity.SupplierChannelMerchantsRelation;
 import com.elong.hotel.hotelmy.service.MyService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
@@ -39,6 +41,9 @@ public class BasicController {
 
     @Autowired
     RedisTemplateService redisTemplateService;
+
+    @Autowired
+    CommonRedisTemplate commonRedisTemplate;
 
     // http://127.0.0.1:8080/hello?name=lisi
     @RequestMapping("/hello")
@@ -113,6 +118,8 @@ public class BasicController {
         List<SupplierChannelMerchantsRelation> supplierChannelList = supplierBLL.getSupplierChannelList(Arrays.asList(3L, 4L));
         redisTemplateService.findOneBook("python");
         redisTemplateService.findOneBook("kafka");
+        System.out.println(commonRedisTemplate.getValue("locknum"));
+        String lockNum = commonRedisTemplate.getValue("locknum");
         ModelAndView modelAndView = new ModelAndView("home");
         modelAndView.addObject("message","hello thymeleaf");
         return modelAndView;

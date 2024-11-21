@@ -6,8 +6,6 @@ import com.elong.hotel.hotelmy.respositorys.BookRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
@@ -31,13 +29,13 @@ public class RedisTemplateService {
 
     @Autowired
     BookRepository bookRepository;
-
-    @Bean
-    public RedisTemplate<String,String> redisTemplate(RedisConnectionFactory redisConnectionFactory){
-        RedisTemplate<String, String> redisTemplate = new RedisTemplate<>();
-        redisTemplate.setConnectionFactory(redisConnectionFactory);
-        return redisTemplate;
-    }
+//
+//    @Bean
+//    public RedisTemplate<String,String> redisTemplate(RedisConnectionFactory redisConnectionFactory){
+//        RedisTemplate<String, String> redisTemplate = new RedisTemplate<>();
+//        redisTemplate.setConnectionFactory(redisConnectionFactory);
+//        return redisTemplate;
+//    }
 
     public Optional<Book> findOneBook(String name){
         HashOperations<String,String,String> hashOperations = redisTemplate.opsForHash();
