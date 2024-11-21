@@ -16,5 +16,4 @@ public class CustomErrorController implements ErrorController {
         // 返回自定义错误视图
         return "error";
     }
-
 }

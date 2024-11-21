@@ -17,6 +17,7 @@
 package com.elong.hotel.hotelmy.demos.web;
 
 import com.elong.hotel.hotelmy.bll.SupplierBLL;
+import com.elong.hotel.hotelmy.common.model.redis.RedisTemplateService;
 import com.elong.hotel.hotelmy.entity.SupplierChannelMerchantsRelation;
 import com.elong.hotel.hotelmy.service.MyService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +37,8 @@ public class BasicController {
     @Autowired
     SupplierBLL supplierBLL;
 
-
+    @Autowired
+    RedisTemplateService redisTemplateService;
 
     // http://127.0.0.1:8080/hello?name=lisi
     @RequestMapping("/hello")
@@ -106,10 +108,18 @@ public class BasicController {
         return data;
     }
 
-    @RequestMapping("/meo")
+    @RequestMapping("/home")
     public ModelAndView getHello(){
         List<SupplierChannelMerchantsRelation> supplierChannelList = supplierBLL.getSupplierChannelList(Arrays.asList(3L, 4L));
+        redisTemplateService.findOneBook("python");
+        redisTemplateService.findOneBook("kafka");
         ModelAndView modelAndView = new ModelAndView("home");
+        modelAndView.addObject("message","hello thymeleaf");
         return modelAndView;
+    }
+
+    @RequestMapping("/index")
+    public String index(){
+        return "index";
     }
 }
