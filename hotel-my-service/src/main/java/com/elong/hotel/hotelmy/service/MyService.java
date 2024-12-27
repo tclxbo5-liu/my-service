@@ -36,7 +36,7 @@ public class MyService   {
 
 
     public List<SupplierChannelMerchantsRelation> getAll(String supplierId) {
-        List<SupplierChannelMerchantsRelation> supplierChannelMerchantsRelations = supplierChannelMerchantsRelationMapper.selectAll(supplierId);
+        List<SupplierChannelMerchantsRelation> supplierChannelMerchantsRelations = supplierChannelMerchantsRelationMapper.selectAll(supplierId,0);
         log.info(JSON.toJSONString(supplierChannelMerchantsRelations));
         return supplierChannelMerchantsRelations;
     }

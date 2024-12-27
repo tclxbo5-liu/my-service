@@ -27,7 +27,20 @@
       <result column="supplier_category_name" jdbcType="VARCHAR" property="supplierCategoryName" />
     </collection>
   </resultMap>
+  <resultMap id="associationList" type="com.elong.hotel.hotelmy.entity.SupplierChannelMerchantsRelation">
+    <id column="id" jdbcType="BIGINT" property="id"/>
+    <result column="supplier_name" jdbcType="VARCHAR" property="supplierName"/>
+    <result column="channel_merchants_id" jdbcType="INTEGER" property="channelMerchantsId"/>
+    <association property="supplierThirdMapping" javaType="com.elong.hotel.hotelmy.entity.SupplierThirdMapping">
+      <result column="supplier_account_id" jdbcType="VARCHAR" property="supplierAccountId"/>
+      <result column="supplier_category_name" jdbcType="VARCHAR" property="supplierCategoryName"/>
+      <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+    </association>
+  </resultMap>
 
+  <sql id="my">
+    id,supplier_id,supplier_name
+  </sql>
 
   <sql id="Base_Column_List">
     id, supplier_id, supplier_name, channel_merchants_id, channel_merchants_name, commission_type, 
@@ -43,11 +56,19 @@
       #{item}
     </foreach>
   </select>
-  <select id="selectAll" resultMap="resultList">
+  <select id="selectAll" resultMap="associationList">
     select * from supplier_channel_merchants_relation
     join supplier_thirdmapping on
     supplier_channel_merchants_relation.supplier_id = supplier_thirdmapping.supplier_id
     where supplier_channel_merchants_relation.supplier_id = #{supplierId}
+    <choose>
+      <when test="status != null">
+        and supplier_channel_merchants_relation.status = #{status}
+      </when>
+      <otherwise>
+        and supplier_channel_merchants_relation.status = 0
+     </otherwise>
+    </choose>
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from supplier_channel_merchants_relation

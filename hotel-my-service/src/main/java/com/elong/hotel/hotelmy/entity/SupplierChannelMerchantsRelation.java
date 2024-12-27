@@ -84,4 +84,6 @@ public class SupplierChannelMerchantsRelation {
     private Date timestamp;
 
     List<SupplierThirdMapping> supplierThirdMappings;
+
+    SupplierThirdMapping supplierThirdMapping;
 }
