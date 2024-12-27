@@ -18,6 +18,17 @@
     <result column="op_ip" jdbcType="VARCHAR" property="opIp" />
     <result column="_timestamp" jdbcType="TIMESTAMP" property="timestamp" />
   </resultMap>
+  <resultMap id="resultList" type="com.elong.hotel.hotelmy.entity.SupplierChannelMerchantsRelation">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="supplier_name" jdbcType="VARCHAR" property="supplierName" />
+    <result column="channel_merchants_id" jdbcType="INTEGER" property="channelMerchantsId" />
+    <collection  ofType="com.elong.hotel.hotelmy.entity.SupplierThirdMapping" property="supplierThirdMappings">
+      <result column="supplier_account_id" jdbcType="VARCHAR" property="supplierAccountId" />
+      <result column="supplier_category_name" jdbcType="VARCHAR" property="supplierCategoryName" />
+    </collection>
+  </resultMap>
+
+
   <sql id="Base_Column_List">
     id, supplier_id, supplier_name, channel_merchants_id, channel_merchants_name, commission_type, 
     commission_value, status, audit_type, audit_opinion, create_time, creator, operator, 
@@ -31,6 +42,12 @@
     <foreach collection="idList" index="index" item="item" open="in (" separator="," close=")">
       #{item}
     </foreach>
+  </select>
+  <select id="selectAll" resultMap="resultList">
+    select * from supplier_channel_merchants_relation
+    join supplier_thirdmapping on
+    supplier_channel_merchants_relation.supplier_id = supplier_thirdmapping.supplier_id
+    where supplier_channel_merchants_relation.supplier_id = #{supplierId}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from supplier_channel_merchants_relation

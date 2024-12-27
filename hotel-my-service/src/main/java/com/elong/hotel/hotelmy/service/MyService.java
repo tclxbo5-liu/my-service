@@ -3,13 +3,13 @@ package com.elong.hotel.hotelmy.service;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.elong.hotel.hotelmy.bll.SupplierBLL;
 import com.elong.hotel.hotelmy.common.model.MyThread;
 import com.elong.hotel.hotelmy.common.model.resp.ResponseBase;
 import com.elong.hotel.hotelmy.entity.People;
 import com.elong.hotel.hotelmy.entity.SupplierChannelMerchantsRelation;
 import com.elong.hotel.hotelmy.mybatis.SupplierChannelMerchantsRelationMapper;
 import com.elong.hotel.hotelmy.utils.HttpUtils;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +21,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 @Service
+@Slf4j
 public class MyService   {
 
     public final static Logger LOGGER= LoggerFactory.getLogger("specialLog");
@@ -33,6 +34,12 @@ public class MyService   {
         return supplierChannelMerchantsRelationMapper.selectByPrimaryKey(idList);
     }
 
+
+    public List<SupplierChannelMerchantsRelation> getAll(String supplierId) {
+        List<SupplierChannelMerchantsRelation> supplierChannelMerchantsRelations = supplierChannelMerchantsRelationMapper.selectAll(supplierId);
+        log.info(JSON.toJSONString(supplierChannelMerchantsRelations));
+        return supplierChannelMerchantsRelations;
+    }
 
     public void thread2() {
         ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(2, 2, 0L, TimeUnit.MILLISECONDS, new LinkedBlockingQueue<Runnable>());

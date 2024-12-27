@@ -21,4 +21,6 @@ public interface SupplierChannelMerchantsRelationMapper {
     int updateByPrimaryKeySelective(SupplierChannelMerchantsRelation record);
 
     int updateByPrimaryKey(SupplierChannelMerchantsRelation record);
+
+    List<SupplierChannelMerchantsRelation> selectAll(String supplierId);
 }

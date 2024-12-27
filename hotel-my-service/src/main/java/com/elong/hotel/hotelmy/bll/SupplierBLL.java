@@ -30,7 +30,8 @@ public class SupplierBLL {
     }
 
     public void postTest(){
-        myService.postTest();
+//        myService.postTest();
+        myService.getAll("19435");
     }
 
     public void newThreadTask() {

@@ -60,4 +60,9 @@ class HotelMyApplicationTests {
         log.info("relation1:{}", relation1);
     }
 
+
+    @Test
+    public void test() {
+        myService.getAll("19435");
+    }
 }
