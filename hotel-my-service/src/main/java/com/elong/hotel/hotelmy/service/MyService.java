@@ -8,13 +8,17 @@ import com.elong.hotel.hotelmy.common.model.resp.ResponseBase;
 import com.elong.hotel.hotelmy.entity.People;
 import com.elong.hotel.hotelmy.entity.SupplierChannelMerchantsRelation;
 import com.elong.hotel.hotelmy.mybatis.SupplierChannelMerchantsRelationMapper;
-import com.elong.hotel.hotelmy.utils.HttpUtils;
+import com.elong.hotel.hotelmy.utils.https.HttpUtils;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.http.client.config.RequestConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -37,7 +41,12 @@ public class MyService   {
 
     public List<SupplierChannelMerchantsRelation> getAll(String supplierId) {
         List<SupplierChannelMerchantsRelation> supplierChannelMerchantsRelations = supplierChannelMerchantsRelationMapper.selectAll(supplierId,0);
-        log.info(JSON.toJSONString(supplierChannelMerchantsRelations));
+//        log.info(supplierChannelMerchantsRelations.size()+"");
+//        log.info(JSON.toJSONString(supplierChannelMerchantsRelations));
+//        SupplierChannelMerchantsRelation relation = supplierChannelMerchantsRelationMapper.selectId(supplierId);
+//        log.info((relation==null)+"");
+//        log.info("relation:{}",JSON.toJSON(relation));
+//        log.info("supplierChannelMerchantsRelations:{}",supplierChannelMerchantsRelations.get(0).getChannelMerchantsId());
         return supplierChannelMerchantsRelations;
     }
 

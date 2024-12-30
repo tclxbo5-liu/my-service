@@ -70,6 +70,10 @@
      </otherwise>
     </choose>
   </select>
+  <select id="selectId" resultType="com.elong.hotel.hotelmy.entity.SupplierChannelMerchantsRelation">
+    select id from supplier_channel_merchants_relation
+    where supplier_id = #{supplierId}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from supplier_channel_merchants_relation
     where id = #{id,jdbcType=BIGINT}

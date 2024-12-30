@@ -23,4 +23,6 @@ public interface SupplierChannelMerchantsRelationMapper {
     int updateByPrimaryKey(SupplierChannelMerchantsRelation record);
 
     List<SupplierChannelMerchantsRelation> selectAll(@Param("supplierId") String supplierId,@Param("status") Integer status);
+
+    SupplierChannelMerchantsRelation selectId(@Param("supplierId") String supplierId);
 }
