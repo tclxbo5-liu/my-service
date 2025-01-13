@@ -7,6 +7,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
+import java.util.LinkedList;
 
 /**
  * @author bobo
@@ -19,18 +20,24 @@ public class RefectionUtilsTest {
 
 
 
-    public static void main(String[] args) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
-        Class<ShowMethod> clazz = ShowMethod.class;
-        for (Method method : clazz.getMethods()) {
+    public static void main(String[] args) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException, ClassNotFoundException, InstantiationException {
+//        Class<ShowMethod> clazz = ShowMethod.class;
+//        for (Method method : clazz.getMethods()) {
 //            System.out.println(method);
-        }
-        Method method = clazz.getDeclaredMethod("add", int.class, int.class);
-        ShowMethod showMethod = new ShowMethod();
-        method.setAccessible(true);
+//        }
+//        Method method = clazz.getDeclaredMethod("add", int.class, int.class);
+//        ShowMethod showMethod = new ShowMethod();
+//        method.setAccessible(true);
 //        System.out.println(method.invoke(showMethod, 1, 2));
 //        testFieldRefectionMethod();
-        copyStatic();
-
+//        copyStatic();
+        Class<?> aClass = Class.forName("com.elong.hotel.javabase.reflection.ShowMethod");
+        Method method = aClass.getDeclaredMethod("show", String.class);
+        method.setAccessible(true);
+        ShowMethod o =(ShowMethod) aClass.newInstance();
+        String invoke = (String)method.invoke(o, "hello");
+        System.out.println(invoke);
+        LinkedList<String> linkedList = new LinkedList<>();
     }
 
     public static  void testFieldReflectionUtils() {
